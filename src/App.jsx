@@ -1,23 +1,27 @@
-import { Routes, Route } from "react-router-dom";
-import Header from "./Header";
+
+import { Routes, Route, Link } from "react-router-dom";
+
 import Home from "./pages/Home";
-import About from "./pages/About";
-import Categories from "./pages/Categories";
-import News from "./pages/News";
-import NewsDetail from "./pages/NewsDetail";
-import NotFound from "./pages/NotFound";
-import User from "./pages/User"; // pages papkasidan olindi
-import Todos from "./pages/Todos"; // pages papkasidan olindi
+import Todos from "./pages/Todos";
+import TodoDetail from "./pages/TodoDetail";
 
 function App() {
   return (
-    <>
-      <Header />
+    <div>
+      <nav>
+        <Link to="/">Bosh sahifa</Link>
+        {" | "}
+        <Link to="/todos">Todos ro'yxati</Link>
+      </nav>
+
+      <hr />
+
       <Routes>
-        <Route path="/" element={<User />} />
+        <Route path="/" element={<Home />} />
         <Route path="/todos" element={<Todos />} />
+        <Route path="/todos/:id" element={<TodoDetail />} />
       </Routes>
-    </>
+    </div>
   );
 }
 

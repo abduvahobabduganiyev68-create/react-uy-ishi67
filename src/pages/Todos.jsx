@@ -1,36 +1,51 @@
-import React, { useState, useEffect } from "react";
+
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Todos() {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos")
+    fetch("https://jsonplaceholder.typicode.com/todos?_limit=200")
       .then((response) => response.json())
       .then((data) => {
         setTodos(data);
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Xatolik:", error);
+        console.log("Xatolik:", error);
         setLoading(false);
       });
   }, []);
 
   if (loading) {
-    return <p>Yuklanmoqda...</p>;
+    return <h2>Yuklanmoqda...</h2>;
   }
 
   return (
     <div>
-      <h2>200 ta Todo ro'yxati</h2>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
-            <a href={`#todo-${todo.id}`}>{todo.title}</a>
-          </li>
-        ))}
-      </ul>
+      <h1>Todos ro'yxati</h1>
+
+      <h3>Jami: {todos.length} ta Todo</h3>
+
+      {todos.map((todo) => (
+        <div key={todo.id}>
+          <h3>
+            {todo.id}. {todo.title}
+          </h3>
+
+          <p>
+            Holati: {todo.completed ? "Bajarilgan" : "Bajarilmagan"}
+          </p>
+
+          <Link to={`/todos/${todo.id}`}>
+            Batafsil ko'rish
+          </Link>
+
+          <hr />
+        </div>
+      ))}
     </div>
   );
 }

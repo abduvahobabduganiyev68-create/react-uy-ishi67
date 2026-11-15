@@ -1,9 +1,16 @@
+
+import { Link } from "react-router-dom";
+
 function Home() {
   return (
-    <section>
-      <h1>Home</h1>
-      <p>Bosh sahifaga xush kelibsiz!</p>
-    </section>
+    <div>
+      <h1>Bosh sahifa</h1>
+      <p>JSONPlaceholder API loyihasiga xush kelibsiz!</p>
+
+      <Link to="/todos">
+        <button>200 ta Todoni ko'rish</button>
+      </Link>
+    </div>
   );
 }
 
