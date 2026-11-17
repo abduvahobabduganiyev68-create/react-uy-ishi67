@@ -1,26 +1,37 @@
-
-import { Routes, Route, Link } from "react-router-dom";
-
-import Home from "./pages/Home";
-import Todos from "./pages/Todos";
-import TodoDetail from "./pages/TodoDetail";
+import { useState } from 'react';
 
 function App() {
+  const [theme, setTheme] = useState('light');
+
+  const isDark = theme === 'dark';
+
   return (
-    <div>
-      <nav>
-        <Link to="/">Bosh sahifa</Link>
-        {" | "}
-        <Link to="/todos">Todos ro'yxati</Link>
-      </nav>
+    <div
+      style={{
+        backgroundColor: isDark ? '#000000' : '#ffffff',
+        color: isDark ? '#ffffff' : '#000000',
+        minHeight: '100vh',
+        display: 'flex',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        padding: '20px',
+        gap: '10px',
+        transition: 'all 0.3s ease',
+      }}
+    >
+      <button
+        onClick={() => setTheme('light')}
+        style={{ padding: '8px 16px', cursor: 'pointer' }}
+      >
+        Light
+      </button>
 
-      <hr />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/todos" element={<Todos />} />
-        <Route path="/todos/:id" element={<TodoDetail />} />
-      </Routes>
+      <button
+        onClick={() => setTheme('dark')}
+        style={{ padding: '8px 16px', cursor: 'pointer' }}
+      >
+        Dark
+      </button>
     </div>
   );
 }
